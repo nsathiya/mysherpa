@@ -14,13 +14,15 @@ import { UserController } from './user.controller';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
+      url: process.env.DATABASE_URL, // Railway uses DATABASE_URL
       host: process.env.POSTGRES_HOST || 'localhost',
       port: parseInt(process.env.POSTGRES_PORT || '5432', 10),
       username: process.env.POSTGRES_USER || 'postgres',
       password: process.env.POSTGRES_PASSWORD || 'postgres',
       database: process.env.POSTGRES_DB || 'concierge',
       autoLoadEntities: true,
-      synchronize: true, // set to false in production
+      synchronize: process.env.NODE_ENV !== 'production', // Only sync in development
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false, // SSL for production
     }),
     TypeOrmModule.forFeature([User]),
   ],
