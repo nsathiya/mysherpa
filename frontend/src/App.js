@@ -40,7 +40,7 @@ function App() {
       if (user) {
         setSyncingUser(true);
         try {
-          const res = await fetch('http://localhost:3000/api/users', {
+          const res = await fetch(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'}/api/users`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -77,7 +77,7 @@ function App() {
   const handleOnboardingComplete = async () => {
     // Refetch user from backend
     try {
-      const res = await fetch(`http://localhost:3000/api/users`, {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'}/api/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -117,7 +117,7 @@ function App() {
     setResults([]);
     setShowMap(false);
     try {
-      const response = await fetch('http://localhost:3000/suggestions', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'}/suggestions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -152,7 +152,7 @@ function App() {
     try {
       const suggestionsParam = encodeURIComponent(JSON.stringify(results));
       const response = await fetch(
-        `http://localhost:3000/suggestions/email-preview?suggestions=${suggestionsParam}&activity=${encodeURIComponent(activity)}&locationTime=${encodeURIComponent(locationTime)}&price=${encodeURIComponent(price)}`
+        `${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'}/suggestions/email-preview?suggestions=${suggestionsParam}&activity=${encodeURIComponent(activity)}&locationTime=${encodeURIComponent(locationTime)}&price=${encodeURIComponent(price)}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -173,7 +173,7 @@ function App() {
     setEmailMessage('');
     
     try {
-      const response = await fetch('http://localhost:3000/suggestions/email', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'}/suggestions/email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -221,7 +221,7 @@ function App() {
     setSubmittingFeedback(prev => ({ ...prev, [suggestionTitle]: true }));
     
     try {
-      const response = await fetch('http://localhost:3000/suggestions/feedback', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'}/suggestions/feedback`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
