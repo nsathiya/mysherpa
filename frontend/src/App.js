@@ -5,6 +5,7 @@ import AuthPage from './AuthPage';
 import { auth } from './firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import Onboarding from './Onboarding';
+import config from './config';
 
 function App() {
   const [activity, setActivity] = useState('');
@@ -40,7 +41,7 @@ function App() {
       if (user) {
         setSyncingUser(true);
         try {
-          const res = await fetch(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'}/api/users`, {
+          const res = await fetch(`${config.backendUrl}/api/users`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -77,7 +78,7 @@ function App() {
   const handleOnboardingComplete = async () => {
     // Refetch user from backend
     try {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'}/api/users`, {
+      const res = await fetch(`${config.backendUrl}/api/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -117,7 +118,7 @@ function App() {
     setResults([]);
     setShowMap(false);
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'}/suggestions`, {
+      const response = await fetch(`${config.backendUrl}/suggestions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -152,7 +153,7 @@ function App() {
     try {
       const suggestionsParam = encodeURIComponent(JSON.stringify(results));
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'}/suggestions/email-preview?suggestions=${suggestionsParam}&activity=${encodeURIComponent(activity)}&locationTime=${encodeURIComponent(locationTime)}&price=${encodeURIComponent(price)}`
+        `${config.backendUrl}/suggestions/email-preview?suggestions=${suggestionsParam}&activity=${encodeURIComponent(activity)}&locationTime=${encodeURIComponent(locationTime)}&price=${encodeURIComponent(price)}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -173,7 +174,7 @@ function App() {
     setEmailMessage('');
     
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'}/suggestions/email`, {
+              const response = await fetch(`${config.backendUrl}/suggestions/email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -221,7 +222,7 @@ function App() {
     setSubmittingFeedback(prev => ({ ...prev, [suggestionTitle]: true }));
     
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'}/suggestions/feedback`, {
+      const response = await fetch(`${config.backendUrl}/suggestions/feedback`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

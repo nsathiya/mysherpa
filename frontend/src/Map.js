@@ -1,5 +1,6 @@
 import { APIProvider, Map as GoogleMap, AdvancedMarker, Pin, InfoWindow } from '@vis.gl/react-google-maps';
 import { useState } from 'react';
+import config from './config';
 
 export default function Map({ suggestions }) {
   const [selected, setSelected] = useState(null);
@@ -9,14 +10,14 @@ export default function Map({ suggestions }) {
     : { lat: 40.7128, lng: -74.0060 };
 
   return (
-    <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+    <APIProvider apiKey={config.googleMapsApiKey}>
       <GoogleMap
         style={{ width: '100%', height: 400, borderRadius: 8 }}
         defaultCenter={defaultCenter}
         defaultZoom={13}
         gestureHandling={'greedy'}
         disableDefaultUI={true}
-        mapId={process.env.REACT_APP_GOOGLE_MAP_ID}
+        mapId={config.googleMapId}
       >
         {suggestions.map((s, i) => (
           <AdvancedMarker

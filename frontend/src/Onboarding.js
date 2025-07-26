@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import config from './config';
 
 const adventureOptions = [
   { value: 'off_beaten_path', label: '🧗‍♂️ I like to go off the beaten path' },
@@ -47,7 +48,7 @@ export default function Onboarding({ userId, onComplete }) {
     setLoading(true);
     setError('');
     try {
-      await fetch(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'}/api/users/${userId}`, {
+      await fetch(`${config.backendUrl}/api/users/${userId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
