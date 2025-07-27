@@ -4,6 +4,11 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   try {
+    console.log('🔧 Starting application...');
+    console.log('📊 Environment variables:');
+    console.log('  - NODE_ENV:', process.env.NODE_ENV);
+    console.log('  - DATABASE_URL:', process.env.DATABASE_URL ? 'Set' : 'Not set');
+    
     const app = await NestFactory.create(AppModule);
   
   // Enable CORS

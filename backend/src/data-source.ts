@@ -12,7 +12,7 @@ export const AppDataSource = new DataSource({
   synchronize: process.env.NODE_ENV !== 'production', // Only sync in development
   logging: true,
   entities: [User],
-  migrations: [__dirname + '/migrations/*.ts'],
+  migrations: [__dirname + '/migrations/*.js'],
   subscribers: [],
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 }); 

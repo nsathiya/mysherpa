@@ -21,8 +21,8 @@ import { UserController } from './user.controller';
       password: process.env.POSTGRES_PASSWORD || 'postgres',
       database: process.env.POSTGRES_DB || 'concierge',
       autoLoadEntities: true,
-      synchronize: process.env.NODE_ENV !== 'production', // Only sync in development
-      migrations: [__dirname + '/migrations/*.ts'],
+      synchronize: true, // Temporarily enable to create table
+      migrations: [__dirname + '/migrations/*.js'],
       migrationsRun: true, // Automatically run migrations on startup
       ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false, // SSL for production
     }),
