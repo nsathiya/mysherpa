@@ -5,12 +5,25 @@ const config = {
   googleMapId: process.env.REACT_APP_GOOGLE_MAP_ID || '',
 };
 
-// Log the backend URL for debugging
-console.log('🔧 Frontend Config:', {
-  backendUrl: config.backendUrl,
+// Detailed debugging
+console.log('🔧 Environment Variables Debug:', {
+  // Raw environment variables
+  REACT_APP_BACKEND_URL: process.env.REACT_APP_BACKEND_URL,
+  REACT_APP_GOOGLE_MAPS_API_KEY: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  REACT_APP_GOOGLE_MAP_ID: process.env.REACT_APP_GOOGLE_MAP_ID,
+  
+  // Process object
+  hasProcess: typeof process !== 'undefined',
+  hasProcessEnv: typeof process !== 'undefined' && !!process.env,
+  
+  // Config values
+  configBackendUrl: config.backendUrl,
+  configGoogleMapsKey: config.googleMapsApiKey,
+  configGoogleMapId: config.googleMapId,
+  
+  // Boolean checks
   hasGoogleMapsKey: !!config.googleMapsApiKey,
   hasGoogleMapId: !!config.googleMapId,
-  envBackendUrl: process.env.REACT_APP_BACKEND_URL,
 });
 
 export default config; 

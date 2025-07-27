@@ -7,6 +7,15 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import Onboarding from './Onboarding';
 import config from './config';
 
+// Test environment variables at component level
+console.log('🔧 App.js Environment Test:', {
+  REACT_APP_BACKEND_URL: process.env.REACT_APP_BACKEND_URL,
+  REACT_APP_GOOGLE_MAPS_API_KEY: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  REACT_APP_GOOGLE_MAP_ID: process.env.REACT_APP_GOOGLE_MAP_ID,
+  hasProcess: typeof process !== 'undefined',
+  hasProcessEnv: typeof process !== 'undefined' && !!process.env,
+});
+
 function App() {
   const [activity, setActivity] = useState('');
   const [locationTime, setLocationTime] = useState('');
