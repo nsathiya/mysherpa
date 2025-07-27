@@ -20,7 +20,10 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "db:local": "docker run --name concierge-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=concierge -p 5432:5432 -d postgres",
     "db:stop": "docker stop concierge-postgres",
-    "db:rm": "docker rm concierge-postgres"
+    "db:rm": "docker rm concierge-postgres",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d src/data-source.ts",
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d src/data-source.ts",
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/data-source.ts"
   },
   "dependencies": {
     "@getbrevo/brevo": "^2.5.0",

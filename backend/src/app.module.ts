@@ -22,6 +22,8 @@ import { UserController } from './user.controller';
       database: process.env.POSTGRES_DB || 'concierge',
       autoLoadEntities: true,
       synchronize: process.env.NODE_ENV !== 'production', // Only sync in development
+      migrations: [__dirname + '/migrations/*.ts'],
+      migrationsRun: true, // Automatically run migrations on startup
       ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false, // SSL for production
     }),
     TypeOrmModule.forFeature([User]),
