@@ -1,6 +1,5 @@
 // Configuration file for environment variables
 const config = {
-  // Backend URL - will be replaced at runtime
   backendUrl: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000',
   
   // Google Maps configuration
