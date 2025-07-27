@@ -7,4 +7,12 @@ const config = {
   googleMapId: process.env.REACT_APP_GOOGLE_MAP_ID || '',
 };
 
+// Log the backend URL for debugging
+console.log('🔧 Frontend Config:', {
+  backendUrl: config.backendUrl,
+  hasGoogleMapsKey: !!config.googleMapsApiKey,
+  hasGoogleMapId: !!config.googleMapId,
+  envBackendUrl: process.env.REACT_APP_BACKEND_URL,
+});
+
 export default config; 
