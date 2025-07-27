@@ -1,7 +1,12 @@
 {
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
-    "builder": "DOCKERFILE"
+    "builder": "DOCKERFILE",
+    "buildArgs": {
+      "REACT_APP_BACKEND_URL": "$REACT_APP_BACKEND_URL",
+      "REACT_APP_GOOGLE_MAPS_API_KEY": "$REACT_APP_GOOGLE_MAPS_API_KEY",
+      "REACT_APP_GOOGLE_MAP_ID": "$REACT_APP_GOOGLE_MAP_ID"
+    }
   },
   "deploy": {
     "healthcheckPath": "/",
